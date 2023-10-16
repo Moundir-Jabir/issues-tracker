@@ -2,8 +2,9 @@
 import { Button, Table } from "@radix-ui/themes";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { IssueStatusBadge, Link } from "../components";
+import { IssueStatusBadge, Link as MyLink } from "../components";
 import { Issue } from "@prisma/client";
+import Link from "next/link";
 
 const page = () => {
   const [issues, setIssues] = useState([]);
@@ -31,7 +32,7 @@ const page = () => {
           {issues.map((issue: Issue) => (
             <Table.Row key={issue.id}>
               <Table.Cell>
-                <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
+                <MyLink href={`/issues/${issue.id}`}>{issue.title}</MyLink>
               </Table.Cell>
               <Table.Cell>
                 <IssueStatusBadge status={issue.status} />
@@ -46,5 +47,7 @@ const page = () => {
     </div>
   );
 };
+
+export const dynamic = "force-dynamic";
 
 export default page;

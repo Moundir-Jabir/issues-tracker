@@ -1,11 +1,12 @@
 "use client";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { notFound } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Box, Flex, Grid } from "@radix-ui/themes";
-import EditIssueButton from "./EditIssueButton";
-import IssueDetails from "./IssueDetails";
-import DeleteIssueButton from "./DeleteIssueButton";
+import dynamic from "next/dynamic";
+
+const IssueForm = dynamic(() => import("@/app/issues/_components/IssueForm"), {
+  ssr: false,
+});
 
 interface Props {
   params: {
@@ -33,19 +34,7 @@ const page = ({ params: { id } }: Props) => {
       });
   }, []);
   if (isError) notFound();
-  return (
-    <Grid columns={{ initial: "1", sm: "5" }} gap="5">
-      <Box className="md:col-span-4">
-        <IssueDetails issue={issue} />
-      </Box>
-      <Box>
-        <Flex direction="column" className="space-y-3">
-          <EditIssueButton id={id} />
-          <DeleteIssueButton id={id} />
-        </Flex>
-      </Box>
-    </Grid>
-  );
+  return <IssueForm issue={issue} />;
 };
 
 export default page;

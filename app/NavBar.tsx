@@ -20,7 +20,7 @@ const NavBar = () => {
       </Link>
       <ul className="flex space-x-5">
         {links.map((link) => (
-          <NavBarItem link={link} />
+          <NavBarItem key={link.label} link={link} />
         ))}
       </ul>
     </nav>
