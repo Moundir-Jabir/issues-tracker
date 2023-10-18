@@ -10,13 +10,13 @@ interface Props {
 const IssueDetails = ({ issue }: Props) => {
   return (
     <>
-      <Heading>{issue.title}</Heading>
+      <Heading>{issue?.title}</Heading>
       <Flex gap="3" my="3">
-        <IssueStatusBadge status={issue.status} />
-        <Text>{issue.createdAt?.toDateString()}</Text>
+        <IssueStatusBadge status={issue?.status} />
+        <Text>{issue?.createdAt && issue.createdAt?.toDateString()}</Text>
       </Flex>
       <Card className="prose max-w-full mt-4">
-        <ReactMarkdown>{issue.description}</ReactMarkdown>
+        <ReactMarkdown>{issue?.description}</ReactMarkdown>
       </Card>
     </>
   );

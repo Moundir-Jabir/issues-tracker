@@ -15,11 +15,11 @@ const page = () => {
   }, []);
   return (
     <div>
-      <Link href="/issues/new">
-        <div className="mb-5">
+      <div className="mb-5">
+        <Link href="/issues/new">
           <Button>New Issue</Button>
-        </div>
-      </Link>
+        </Link>
+      </div>
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
